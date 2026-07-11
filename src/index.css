@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800;900&family=Playfair+Display:ital,wght@1,700;1,800&display=swap");
+@import "tailwindcss";
+
+* { box-sizing: border-box; }
+
+html, body, #root { min-height: 100%; }
+
+body {
+  margin: 0;
+  background: #0A090C;
+  color: #F5EEE6;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Poppins", "Inter", sans-serif;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: #D4A373;
+  color: #0A090C;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #0A090C; }
+::-webkit-scrollbar-thumb {
+  background: #D4A373;
+  border-radius: 999px;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.font-serif-italic {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+/* Smooth image loading */
+img { display: block; max-width: 100%; }
+
+/* Rounded selection outline override */
+button, a, input, select, textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 768px) {
+  body { cursor: auto; }
+}
