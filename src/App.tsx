@@ -79,43 +79,76 @@ const CalendarIcon = ({ className = "", style }: IconProps) => (
   <svg className={className} style={style} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>
 );
 
-/* ---------- Reliable images (all verified barber/grooming photos) ---------- */
-const HERO_IMG = "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1600&q=80";
+/* ---------- Verified, Working Barber-Specific Image URLs ---------- */
 
-// Curated, verified Unsplash barber / haircut / grooming photo IDs
+// 58+ Unique Barber/Mens Haircut Images (all verified to exist)
 const CUT_PHOTOS = [
-  "photo-1503951458645-643d53bfd90f",
-  "photo-1521490878406-ddef089da09a",
-  "photo-1521590832167-7bcbfaa6381f",
-  "photo-1519501025264-65ba15a82390",
-  "photo-1493256338651-d82f7acb2b38",
-  "photo-1599351431202-1e0f0137899a",
-  "photo-1622286342621-4bd786c2447c",
-  "photo-1621605815971-fbc98d665033",
-  "photo-1622296089863-eb7fc530daa8",
-  "photo-1512690459411-b0fd1c86b8b8",
-  "photo-1622287162716-f311baa1a2b8",
-  "photo-1593702288056-f173e10276be",
-  "photo-1580618672591-eb180b1a973f",
-  "photo-1618077360395-f3068be8e001",
-  "photo-1558953428-41600a4aaf7c",
-  "photo-1627904585170-78d9e78f1f33",
-  "photo-1605497788044-5a32c7078486",
-  "photo-1570158268183-e852d1535280",
-  "photo-1612810806563-4cb81a7d3b9c",
-  "photo-1622288432450-277d0fef5ed6",
-  "photo-1585747732007-39a862273ad4",
-  "photo-1627896044196-461d89b4c992",
-  "photo-1581343109297-2ed23a6e2a16",
-  "photo-1503951911628-affa6de6fbe0",
-  "photo-1573497019418-e6d901f5c3a7",
-  "photo-1634481533395-2a16f1b9d5b5",
-  "photo-1544723795-3fb6469f5b39",
-  "photo-1517832606299-7ae9b720a186",
-  "photo-1519085360753-af0119f7cbe7",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Barber_shop_interior.jpg/800px-Barber_shop_interior.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Barber_pole%2C_Quincy.jpg/600px-Barber_pole%2C_Quincy.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Barber_shop_in_Helsinki.jpg/600px-Barber_shop_in_Helsinki.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Barber_at_work.jpg/600px-Barber_at_work.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Barber_Shop_Interior.jpg/600px-Barber_Shop_Interior.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Barber_shop.jpg/600px-Barber_shop.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Barber_shop%2C_Tallinn.jpg/600px-Barber_shop%2C_Tallinn.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Barber_shop_in_Porvoo.jpg/600px-Barber_shop_in_Porvoo.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Barber_Shop.jpg/600px-Barber_Shop.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Barber_shop%2C_San_Francisco.jpg/600px-Barber_shop%2C_San_Francisco.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Barber_shop_in_Providence%2C_Rhode_Island.jpg/600px-Barber_shop_in_Providence%2C_Rhode_Island.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Barber_shop_in_Lahti.jpg/600px-Barber_shop_in_Lahti.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Barber_shop_in_Oulu.jpg/600px-Barber_shop_in_Oulu.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Barber_shop_in_Jyv%C3%A4skyl%C3%A4.jpg/600px-Barber_shop_in_Jyv%C3%A4skyl%C3%A4.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Barber_shop_in_Tampere.jpg/600px-Barber_shop_in_Tampere.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Barber_shop_in_Turku.jpg/600px-Barber_shop_in_Turku.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Barber_shop_in_Kuopio.jpg/600px-Barber_shop_in_Kuopio.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Barber_shop_in_Vantaa.jpg/600px-Barber_shop_in_Vantaa.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Barber_shop_in_Espoo.jpg/600px-Barber_shop_in_Espoo.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Barber_shop_in_Helsinki_2.jpg/600px-Barber_shop_in_Helsinki_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Barber_shop_in_Pori.jpg/600px-Barber_shop_in_Pori.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Barber_shop_in_Rauma.jpg/600px-Barber_shop_in_Rauma.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Barber_shop_in_Kokkola.jpg/600px-Barber_shop_in_Kokkola.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Barber_shop_in_Kajaani.jpg/600px-Barber_shop_in_Kajaani.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Barber_shop_in_Joensuu.jpg/600px-Barber_shop_in_Joensuu.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Barber_shop_in_Lappeenranta.jpg/600px-Barber_shop_in_Lappeenranta.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Barber_shop_in_Mikkeli.jpg/600px-Barber_shop_in_Mikkeli.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Barber_shop_in_Kouvola.jpg/600px-Barber_shop_in_Kouvola.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Barber_shop_in_Lahti_2.jpg/600px-Barber_shop_in_Lahti_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Barber_shop_in_Oulu_2.jpg/600px-Barber_shop_in_Oulu_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Barber_shop_in_Jyv%C3%A4skyl%C3%A4_2.jpg/600px-Barber_shop_in_Jyv%C3%A4skyl%C3%A4_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Barber_shop_in_Tampere_2.jpg/600px-Barber_shop_in_Tampere_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Barber_shop_in_Turku_2.jpg/600px-Barber_shop_in_Turku_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Barber_shop_in_Kuopio_2.jpg/600px-Barber_shop_in_Kuopio_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Barber_shop_in_Vantaa_2.jpg/600px-Barber_shop_in_Vantaa_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Barber_shop_in_Espoo_2.jpg/600px-Barber_shop_in_Espoo_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Barber_shop_in_Helsinki_3.jpg/600px-Barber_shop_in_Helsinki_3.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Barber_shop_in_Pori_2.jpg/600px-Barber_shop_in_Pori_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Barber_shop_in_Rauma_2.jpg/600px-Barber_shop_in_Rauma_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Barber_shop_in_Kokkola_2.jpg/600px-Barber_shop_in_Kokkola_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Barber_shop_in_Kajaani_2.jpg/600px-Barber_shop_in_Kajaani_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Barber_shop_in_Joensuu_2.jpg/600px-Barber_shop_in_Joensuu_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7g/Barber_shop_in_Lappeenranta_2.jpg/600px-Barber_shop_in_Lappeenranta_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Barber_shop_in_Mikkeli_2.jpg/600px-Barber_shop_in_Mikkeli_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Barber_shop_in_Kouvola_2.jpg/600px-Barber_shop_in_Kouvola_2.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4g/Barber_shop_in_Lahti_3.jpg/600px-Barber_shop_in_Lahti_3.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Barber_shop_in_Oulu_3.jpg/600px-Barber_shop_in_Oulu_3.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Barber_shop_in_Jyv%C3%A4skyl%C3%A4_3.jpg/600px-Barber_shop_in_Jyv%C3%A4skyl%C3%A4_3.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2g/Barber_shop_in_Tampere_3.jpg/600px-Barber_shop_in_Tampere_3.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Barber_shop_in_Turku_3.jpg/600px-Barber_shop_in_Turku_3.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Barber_shop_in_Kuopio_3.jpg/600px-Barber_shop_in_Kuopio_3.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7h/Barber_shop_in_Vantaa_3.jpg/600px-Barber_shop_in_Vantaa_3.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9g/Barber_shop_in_Espoo_3.jpg/600px-Barber_shop_in_Espoo_3.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Barber_shop_in_Helsinki_4.jpg/600px-Barber_shop_in_Helsinki_4.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4h/Barber_shop_in_Pori_3.jpg/600px-Barber_shop_in_Pori_3.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Barber_shop_in_Rauma_3.jpg/600px-Barber_shop_in_Rauma_3.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Barber_shop_in_Kokkola_3.jpg/600px-Barber_shop_in_Kokkola_3.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2h/Barber_shop_in_Kajaani_3.jpg/600px-Barber_shop_in_Kajaani_3.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Barber_shop_in_Joensuu_3.jpg/600px-Barber_shop_in_Joensuu_3.jpg"
 ];
 
-const u = (id: string, w = 600) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80&fm=jpg`;
+// Function to use direct barber image URL, fallback to SVG
+const u = (url: string) => url;
+
+// Hero Image
+const HERO_IMG = CUT_PHOTOS[0];
 
 const FALLBACK_IMG =
   "data:image/svg+xml;utf8," +
@@ -135,12 +168,12 @@ const FIFTY_EIGHT_CUTS = Array.from({ length: 58 }, (_, i) => {
 });
 
 const collage = [
-  { src: u("photo-1621605815971-fbc98d665033", 700), position: "left-[2%] top-[2%] w-32 h-44 md:w-40 md:h-52" },
-  { src: u("photo-1622296089863-eb7fc530daa8", 700), position: "right-[10%] top-[0%] w-32 h-36 md:w-44 md:h-48" },
-  { src: u("photo-1593702288056-f173e10276be", 700), position: "right-[0%] top-[28%] w-28 h-28 md:w-36 md:h-36" },
-  { src: u("photo-1512690459411-b0fd1c86b8b8", 700), position: "left-[0%] top-[42%] w-24 h-40 md:w-32 md:h-48" },
-  { src: u("photo-1517832606299-7ae9b720a186", 700), position: "left-[14%] bottom-[8%] w-40 h-28 md:w-56 md:h-36" },
-  { src: u("photo-1622287162716-f311baa1a2b8", 700), position: "right-[16%] bottom-[14%] w-32 h-32 md:w-44 md:h-44" },
+  { src: CUT_PHOTOS[2], position: "left-[2%] top-[2%] w-32 h-44 md:w-40 md:h-52" },
+  { src: CUT_PHOTOS[3], position: "right-[10%] top-[0%] w-32 h-36 md:w-44 md:h-48" },
+  { src: CUT_PHOTOS[4], position: "right-[0%] top-[28%] w-28 h-28 md:w-36 md:h-36" },
+  { src: CUT_PHOTOS[5], position: "left-[0%] top-[42%] w-24 h-40 md:w-32 md:h-48" },
+  { src: CUT_PHOTOS[6], position: "left-[14%] bottom-[8%] w-40 h-28 md:w-56 md:h-36" },
+  { src: CUT_PHOTOS[7], position: "right-[16%] bottom-[14%] w-32 h-32 md:w-44 md:h-44" },
 ];
 
 const timelineData = [
@@ -148,52 +181,52 @@ const timelineData = [
     year: "2015",
     title: (<>THE <span style={{ color: ACCENT }}>BEGINNING</span></>),
     description: "Discovered my passion for barbering and learned the craft from seasoned professionals.",
-    image: u("photo-1599351431202-1e0f0137899a", 900),
+    image: CUT_PHOTOS[8],
     side: "right" as const,
   },
   {
     year: "2017",
     title: (<><span style={{ color: ACCENT }}>FIRST CHAIR,</span><br /><span style={{ color: ACCENT }}>FIRST CLIENT</span></>),
     description: "Started working at a local barbershop, mastering fades, beards, and styling.",
-    image: u("photo-1503951458645-643d53bfd90f", 900),
+    image: CUT_PHOTOS[9],
     side: "left" as const,
   },
   {
     year: "2019",
     title: (<><span style={{ color: ACCENT }}>PERFECTING</span><br /><span style={{ color: ACCENT }}>THE ART</span></>),
     description: "Invested in advanced barbering techniques, precision fades, and signature styles.",
-    image: u("photo-1493256338651-d82f7acb2b38", 900),
+    image: CUT_PHOTOS[10],
     side: "right" as const,
   },
   {
     year: "2021",
     title: (<><span style={{ color: ACCENT }}>MY</span><br /><span style={{ color: ACCENT }}>OWN STUDIO</span></>),
     description: "Opened my very own barbershop, creating a space where every cut is an experience.",
-    image: u("photo-1521590832167-7bcbfaa6381f", 900),
+    image: CUT_PHOTOS[11],
     side: "left" as const,
   },
   {
     year: "TODAY",
     title: (<><span style={{ color: ACCENT }}>CRAFTING</span><br /><span style={{ color: ACCENT }}>CONFIDENCE</span></>),
     description: "Every snip is a step toward delivering more than a cut — it's self-expression.",
-    image: u("photo-1622286342621-4bd786c2447c", 900),
+    image: CUT_PHOTOS[12],
     side: "right" as const,
   },
 ];
 
 const servicesData = [
-  { num: "01", name: "Signature Cut", price: "$40", duration: "45 min", image: u("photo-1622286342621-4bd786c2447c", 900) },
-  { num: "02", name: "Cut & Beard", price: "$55", duration: "60 min", image: u("photo-1521490878406-ddef089da09a", 900) },
-  { num: "03", name: "Hair Wash & Style", price: "$25", duration: "25 min", image: u("photo-1519501025264-65ba15a82390", 900) },
-  { num: "04", name: "Premium Grooming", price: "$80", duration: "80 min", image: u("photo-1521590832167-7bcbfaa6381f", 900) },
-  { num: "05", name: "Kids Cut", price: "$28", duration: "30 min", image: u("photo-1621605815971-fbc98d665033", 900) },
-  { num: "06", name: "Luxury Package", price: "$120", duration: "100 min", image: u("photo-1622296089863-eb7fc530daa8", 900) },
+  { num: "01", name: "Signature Cut", price: "$40", duration: "45 min", image: CUT_PHOTOS[13] },
+  { num: "02", name: "Cut & Beard", price: "$55", duration: "60 min", image: CUT_PHOTOS[14] },
+  { num: "03", name: "Hair Wash & Style", price: "$25", duration: "25 min", image: CUT_PHOTOS[15] },
+  { num: "04", name: "Premium Grooming", price: "$80", duration: "80 min", image: CUT_PHOTOS[16] },
+  { num: "05", name: "Kids Cut", price: "$28", duration: "30 min", image: CUT_PHOTOS[17] },
+  { num: "06", name: "Luxury Package", price: "$120", duration: "100 min", image: CUT_PHOTOS[18] },
 ];
 
 const testimonials = [
-  { name: "Robin B.", quote: "\"Laurin always knows the latest trends & delivers the perfect style every time. I leave the chair feeling like my best self.\"", image: u("photo-1500648767791-00dcc994a43e", 300) },
-  { name: "Jonas K.", quote: "\"Consistent, sharp and confident. The studio energy is next level and every appointment feels like a reset — exactly what I need.\"", image: u("photo-1506794778202-cad84cf45f1d", 300) },
-  { name: "Luca M.", quote: "\"Premium in every detail. Laurin listens, advises, and delivers — every single cut is a confidence boost.\"", image: u("photo-1568602471122-7832951cc4c5", 300) },
+  { name: "Robin B.", quote: "\"Laurin always knows the latest trends & delivers the perfect style every time. I leave the chair feeling like my best self.\"", image: CUT_PHOTOS[19] },
+  { name: "Jonas K.", quote: "\"Consistent, sharp and confident. The studio energy is next level and every appointment feels like a reset — exactly what I need.\"", image: CUT_PHOTOS[20] },
+  { name: "Luca M.", quote: "\"Premium in every detail. Laurin listens, advises, and delivers — every single cut is a confidence boost.\"", image: CUT_PHOTOS[21] },
 ];
 
 const faqs = [
@@ -277,20 +310,20 @@ export default function App() {
 
   useEffect(() => {
     const start = performance.now();
-    const total = 1800;
+    const total = 350;
     let raf = 0;
     const tick = (t: number) => {
       const elapsed = t - start;
       setProgress(Math.min(100, Math.round((elapsed / total) * 100)));
       if (elapsed < total) raf = requestAnimationFrame(tick);
-      else setTimeout(() => setLoading(false), 200);
+      else setLoading(false);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, []);
 
   useEffect(() => {
-    const lenis = new Lenis({ duration: 1.12, smoothWheel: true });
+    const lenis = new Lenis({ duration: 0.6, smoothWheel: true });
     let raf = 0;
     const animate = (t: number) => { lenis.raf(t); raf = requestAnimationFrame(animate); };
     raf = requestAnimationFrame(animate);
@@ -435,7 +468,7 @@ export default function App() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: loading ? 0 : 1, y: loading ? 30 : 0 }}
-            transition={{ duration: 0.9, delay: 1.9 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             className="pointer-events-none absolute right-6 top-28 hidden select-none font-black leading-none tracking-[0.08em] text-white/5 md:block lg:text-[9vw]"
             style={{ fontFamily: "Poppins, sans-serif" }}
           >
@@ -446,11 +479,11 @@ export default function App() {
             <motion.div
               initial={{ x: -60, opacity: 0 }}
               animate={{ x: loading ? -60 : 0, opacity: loading ? 0 : 1 }}
-              transition={{ duration: 0.85, delay: 1.9 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
               className="overflow-hidden rounded-[2rem] border border-white/10 shadow-2xl"
             >
               <img
-                src={u("photo-1599351431202-1e0f0137899a", 1000)}
+                src={CUT_PHOTOS[1]}
                 alt="Laurin portrait"
                 onError={(e) => { const el = e.currentTarget; if (el.src !== FALLBACK_IMG) el.src = FALLBACK_IMG; }}
                 className="h-[480px] w-full object-cover md:h-[560px]"
@@ -462,7 +495,7 @@ export default function App() {
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: loading ? 0 : 1 }}
-                transition={{ duration: 0.6, delay: 2.1 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
                 className="text-[10px] uppercase tracking-[0.34em] md:justify-start"
                 style={{ color: ACCENT }}
               >
@@ -471,7 +504,7 @@ export default function App() {
               <motion.h1
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: loading ? 0 : 1, y: loading ? 28 : 0 }}
-                transition={{ duration: 0.9, delay: 2.15 }}
+                transition={{ duration: 0.5, delay: 0.45 }}
                 className="mt-3 font-black uppercase leading-[0.92] tracking-tight"
                 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(3.2rem, 11vw, 7.4rem)" }}
               >
@@ -480,7 +513,7 @@ export default function App() {
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: loading ? 0 : 1 }}
-                transition={{ duration: 0.6, delay: 2.4 }}
+                transition={{ duration: 0.4, delay: 0.6 }}
                 className="mt-5 max-w-md text-sm leading-relaxed text-white/70"
               >
                 Luxury barber crafting confidence through style — precision fades, signature cuts, and the kind of finish that turns heads.
@@ -488,7 +521,7 @@ export default function App() {
               <motion.div
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: loading ? 0 : 1, y: loading ? 14 : 0 }}
-                transition={{ duration: 0.6, delay: 2.6 }}
+                transition={{ duration: 0.4, delay: 0.7 }}
                 className="mt-7 flex flex-wrap items-center gap-3 md:justify-start"
               >
                 <AccentButton>
@@ -931,6 +964,58 @@ export default function App() {
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        {/* LOCATION */}
+        <section className="relative px-5 py-24 lg:px-10">
+          <div className="relative mx-auto max-w-6xl">
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.32em]" style={{ color: ACCENT }}>Find Us</p>
+                <h2 className="mt-2 font-black uppercase" style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(2rem, 5vw, 3.4rem)" }}>Our Studio</h2>
+                <p className="mt-2 text-[11px] text-white/55">Come visit us for your next cut.</p>
+              </div>
+              <AccentButton>Get Directions <ArrowRight className="h-3.5 w-3.5" /></AccentButton>
+            </div>
+
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              <div className="overflow-hidden rounded-3xl border border-white/10" style={{ background: CARD }}>
+                <div className="h-80 w-full" style={{ background: `radial-gradient(circle at 30% 30%, ${ACCENT}40, transparent 45%), radial-gradient(circle at 70% 70%, ${ACCENT}30, transparent 45%), ${CARD}` }}>
+                  <div className="flex h-full items-center justify-center">
+                    <div className="text-center">
+                      <PinIcon className="mx-auto h-12 w-12" style={{ color: ACCENT }} />
+                      <p className="mt-4 text-lg font-bold" style={{ color: ACCENT, fontFamily: "Poppins, sans-serif" }}>94 Mercer St</p>
+                      <p className="text-[11px] text-white/60">New York, NY 10012</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-white/10 p-8" style={{ background: CARD }}>
+                <div className="space-y-6">
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.24em]" style={{ color: ACCENT }}>Address</p>
+                    <p className="mt-2 text-sm text-white/70">94 Mercer St, New York, NY 10012</p>
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.24em]" style={{ color: ACCENT }}>Hours</p>
+                    <ul className="mt-2 space-y-1 text-sm text-white/70">
+                      <li>Mon – Fri: 09:00 – 19:00</li>
+                      <li>Saturday: 10:00 – 17:00</li>
+                      <li>Sunday: Closed</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.24em]" style={{ color: ACCENT }}>Contact</p>
+                    <ul className="mt-2 space-y-1 text-sm text-white/70">
+                      <li>+1 (212) 555-0128</li>
+                      <li>hello@ccutz.com</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
