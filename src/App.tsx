@@ -79,76 +79,22 @@ const CalendarIcon = ({ className = "", style }: IconProps) => (
   <svg className={className} style={style} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>
 );
 
-/* ---------- Verified, Working Barber-Specific Image URLs ---------- */
+/* ---------- Reliable, Always-Loading Picsum Photos (Unblocked by ORB) ---------- */
 
-// 58+ Unique Barber/Mens Haircut Images (all verified to exist)
-const CUT_PHOTOS = [
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Barber_shop_interior.jpg/800px-Barber_shop_interior.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Barber_pole%2C_Quincy.jpg/600px-Barber_pole%2C_Quincy.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Barber_shop_in_Helsinki.jpg/600px-Barber_shop_in_Helsinki.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Barber_at_work.jpg/600px-Barber_at_work.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Barber_Shop_Interior.jpg/600px-Barber_Shop_Interior.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Barber_shop.jpg/600px-Barber_shop.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Barber_shop%2C_Tallinn.jpg/600px-Barber_shop%2C_Tallinn.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Barber_shop_in_Porvoo.jpg/600px-Barber_shop_in_Porvoo.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Barber_Shop.jpg/600px-Barber_Shop.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Barber_shop%2C_San_Francisco.jpg/600px-Barber_shop%2C_San_Francisco.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Barber_shop_in_Providence%2C_Rhode_Island.jpg/600px-Barber_shop_in_Providence%2C_Rhode_Island.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Barber_shop_in_Lahti.jpg/600px-Barber_shop_in_Lahti.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Barber_shop_in_Oulu.jpg/600px-Barber_shop_in_Oulu.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Barber_shop_in_Jyv%C3%A4skyl%C3%A4.jpg/600px-Barber_shop_in_Jyv%C3%A4skyl%C3%A4.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Barber_shop_in_Tampere.jpg/600px-Barber_shop_in_Tampere.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Barber_shop_in_Turku.jpg/600px-Barber_shop_in_Turku.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Barber_shop_in_Kuopio.jpg/600px-Barber_shop_in_Kuopio.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Barber_shop_in_Vantaa.jpg/600px-Barber_shop_in_Vantaa.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Barber_shop_in_Espoo.jpg/600px-Barber_shop_in_Espoo.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Barber_shop_in_Helsinki_2.jpg/600px-Barber_shop_in_Helsinki_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Barber_shop_in_Pori.jpg/600px-Barber_shop_in_Pori.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Barber_shop_in_Rauma.jpg/600px-Barber_shop_in_Rauma.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Barber_shop_in_Kokkola.jpg/600px-Barber_shop_in_Kokkola.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Barber_shop_in_Kajaani.jpg/600px-Barber_shop_in_Kajaani.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Barber_shop_in_Joensuu.jpg/600px-Barber_shop_in_Joensuu.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Barber_shop_in_Lappeenranta.jpg/600px-Barber_shop_in_Lappeenranta.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Barber_shop_in_Mikkeli.jpg/600px-Barber_shop_in_Mikkeli.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Barber_shop_in_Kouvola.jpg/600px-Barber_shop_in_Kouvola.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Barber_shop_in_Lahti_2.jpg/600px-Barber_shop_in_Lahti_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Barber_shop_in_Oulu_2.jpg/600px-Barber_shop_in_Oulu_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Barber_shop_in_Jyv%C3%A4skyl%C3%A4_2.jpg/600px-Barber_shop_in_Jyv%C3%A4skyl%C3%A4_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Barber_shop_in_Tampere_2.jpg/600px-Barber_shop_in_Tampere_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Barber_shop_in_Turku_2.jpg/600px-Barber_shop_in_Turku_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Barber_shop_in_Kuopio_2.jpg/600px-Barber_shop_in_Kuopio_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Barber_shop_in_Vantaa_2.jpg/600px-Barber_shop_in_Vantaa_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Barber_shop_in_Espoo_2.jpg/600px-Barber_shop_in_Espoo_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Barber_shop_in_Helsinki_3.jpg/600px-Barber_shop_in_Helsinki_3.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Barber_shop_in_Pori_2.jpg/600px-Barber_shop_in_Pori_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Barber_shop_in_Rauma_2.jpg/600px-Barber_shop_in_Rauma_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Barber_shop_in_Kokkola_2.jpg/600px-Barber_shop_in_Kokkola_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Barber_shop_in_Kajaani_2.jpg/600px-Barber_shop_in_Kajaani_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Barber_shop_in_Joensuu_2.jpg/600px-Barber_shop_in_Joensuu_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7g/Barber_shop_in_Lappeenranta_2.jpg/600px-Barber_shop_in_Lappeenranta_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Barber_shop_in_Mikkeli_2.jpg/600px-Barber_shop_in_Mikkeli_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Barber_shop_in_Kouvola_2.jpg/600px-Barber_shop_in_Kouvola_2.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4g/Barber_shop_in_Lahti_3.jpg/600px-Barber_shop_in_Lahti_3.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Barber_shop_in_Oulu_3.jpg/600px-Barber_shop_in_Oulu_3.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Barber_shop_in_Jyv%C3%A4skyl%C3%A4_3.jpg/600px-Barber_shop_in_Jyv%C3%A4skyl%C3%A4_3.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2g/Barber_shop_in_Tampere_3.jpg/600px-Barber_shop_in_Tampere_3.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Barber_shop_in_Turku_3.jpg/600px-Barber_shop_in_Turku_3.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Barber_shop_in_Kuopio_3.jpg/600px-Barber_shop_in_Kuopio_3.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7h/Barber_shop_in_Vantaa_3.jpg/600px-Barber_shop_in_Vantaa_3.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9g/Barber_shop_in_Espoo_3.jpg/600px-Barber_shop_in_Espoo_3.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Barber_shop_in_Helsinki_4.jpg/600px-Barber_shop_in_Helsinki_4.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4h/Barber_shop_in_Pori_3.jpg/600px-Barber_shop_in_Pori_3.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Barber_shop_in_Rauma_3.jpg/600px-Barber_shop_in_Rauma_3.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Barber_shop_in_Kokkola_3.jpg/600px-Barber_shop_in_Kokkola_3.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2h/Barber_shop_in_Kajaani_3.jpg/600px-Barber_shop_in_Kajaani_3.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Barber_shop_in_Joensuu_3.jpg/600px-Barber_shop_in_Joensuu_3.jpg"
-];
+// 58+ Unique Picsum Seed Numbers
+const CUT_PHOTOS = [101,102,103,104,105,106,107,108,109,110,
+111,112,113,114,115,116,117,118,119,120,
+121,122,123,124,125,126,127,128,129,130,
+131,132,133,134,135,136,137,138,139,140,
+141,142,143,144,145,146,147,148,149,150,
+151,152,153,154,155,156,157,158];
 
-// Function to use direct barber image URL, fallback to SVG
-const u = (url: string) => url;
+// Function to get Picsum URL by seed, fallback to SVG
+const u = (seed: number, w = 600, h?: number) => 
+  `https://picsum.photos/seed/${seed}/${w}/${h || Math.round(w * 1.3)}`;
 
 // Hero Image
-const HERO_IMG = CUT_PHOTOS[0];
+const HERO_IMG = u(201, 1600, 1000);
 
 const FALLBACK_IMG =
   "data:image/svg+xml;utf8," +
@@ -168,12 +114,12 @@ const FIFTY_EIGHT_CUTS = Array.from({ length: 58 }, (_, i) => {
 });
 
 const collage = [
-  { src: CUT_PHOTOS[2], position: "left-[2%] top-[2%] w-32 h-44 md:w-40 md:h-52" },
-  { src: CUT_PHOTOS[3], position: "right-[10%] top-[0%] w-32 h-36 md:w-44 md:h-48" },
-  { src: CUT_PHOTOS[4], position: "right-[0%] top-[28%] w-28 h-28 md:w-36 md:h-36" },
-  { src: CUT_PHOTOS[5], position: "left-[0%] top-[42%] w-24 h-40 md:w-32 md:h-48" },
-  { src: CUT_PHOTOS[6], position: "left-[14%] bottom-[8%] w-40 h-28 md:w-56 md:h-36" },
-  { src: CUT_PHOTOS[7], position: "right-[16%] bottom-[14%] w-32 h-32 md:w-44 md:h-44" },
+  { src: u(203, 700, 900), position: "left-[2%] top-[2%] w-32 h-44 md:w-40 md:h-52" },
+  { src: u(204, 700, 800), position: "right-[10%] top-[0%] w-32 h-36 md:w-44 md:h-48" },
+  { src: u(205, 700, 700), position: "right-[0%] top-[28%] w-28 h-28 md:w-36 md:h-36" },
+  { src: u(206, 700, 1000), position: "left-[0%] top-[42%] w-24 h-40 md:w-32 md:h-48" },
+  { src: u(207, 700, 500), position: "left-[14%] bottom-[8%] w-40 h-28 md:w-56 md:h-36" },
+  { src: u(208, 700, 700), position: "right-[16%] bottom-[14%] w-32 h-32 md:w-44 md:h-44" },
 ];
 
 const timelineData = [
@@ -483,12 +429,12 @@ export default function App() {
               className="overflow-hidden rounded-[2rem] border border-white/10 shadow-2xl"
             >
               <img
-                src={CUT_PHOTOS[1]}
-                alt="Laurin portrait"
-                onError={(e) => { const el = e.currentTarget; if (el.src !== FALLBACK_IMG) el.src = FALLBACK_IMG; }}
-                className="h-[480px] w-full object-cover md:h-[560px]"
-                loading="eager"
-              />
+                    src={u(202, 1000, 1300)}
+                    alt="Laurin portrait"
+                    onError={(e) => { const el = e.currentTarget; if (el.src !== FALLBACK_IMG) el.src = FALLBACK_IMG; }}
+                    className="h-[480px] w-full object-cover md:h-[560px]"
+                    loading="eager"
+                  />
             </motion.div>
 
             <div className="text-center md:text-left">
