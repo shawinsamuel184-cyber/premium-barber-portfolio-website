@@ -81,7 +81,7 @@ const CalendarIcon = ({ className = "", style }: IconProps) => (
 
 /* ---------- Local Image Paths (Replace with your own images) ---------- */
 
-const EXTENSIONS = ["jpg", "jpeg", "png", "webp", "gif"];
+const EXTENSIONS = ["webp", "jpg", "jpeg", "png", "gif"];
 
 // Helper to get base path (without extension) using your g (1), g (2) naming (with space)
 const getCutBasePath = (num: number) => `/images/58-cuts/g (${num})`;
