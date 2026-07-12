@@ -79,22 +79,40 @@ const CalendarIcon = ({ className = "", style }: IconProps) => (
   <svg className={className} style={style} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>
 );
 
-/* ---------- Reliable, Always-Loading Picsum Photos (Unblocked by ORB) ---------- */
+/* ---------- Local Image Paths (Replace with your own images) ---------- */
 
-// 58+ Unique Picsum Seed Numbers
-const CUT_PHOTOS = [101,102,103,104,105,106,107,108,109,110,
-111,112,113,114,115,116,117,118,119,120,
-121,122,123,124,125,126,127,128,129,130,
-131,132,133,134,135,136,137,138,139,140,
-141,142,143,144,145,146,147,148,149,150,
-151,152,153,154,155,156,157,158];
+const EXTENSIONS = ["jpg", "jpeg", "png", "webp", "gif"];
 
-// Function to get Picsum URL by seed, fallback to SVG
-const u = (seed: number, w = 600, h?: number) => 
-  `https://picsum.photos/seed/${seed}/${w}/${h || Math.round(w * 1.3)}`;
+// Helper to get base path (without extension) using your g (1), g (2) naming (with space)
+const getCutBasePath = (num: number) => `/images/58-cuts/g (${num})`;
+const getProcessBasePath = (num: number) => `/images/process/step${num}`;
+const getServiceBasePath = (name: string) => `/images/services/${name}`;
+const getStoryBasePath = (num: number) => `/images/story/story-${num}`;
+const getHeroBasePath = (name: string) => `/images/hero/${name}`;
 
-// Hero Image
-const HERO_IMG = u(201, 1600, 1000);
+// Helper function to try multiple extensions on image error
+const tryNextExtension = (e: React.SyntheticEvent<HTMLImageElement>, basePath: string, currentExtIndex: number = 0) => {
+  const img = e.currentTarget;
+  console.log(`Trying extension for ${basePath}: ${EXTENSIONS[currentExtIndex]} failed, trying next...`);
+  if (currentExtIndex < EXTENSIONS.length - 1) {
+    const nextExt = EXTENSIONS[currentExtIndex + 1];
+    img.src = `${basePath}.${nextExt}`;
+    // Store current index on the image element to track progress
+    (img as any).extIndex = currentExtIndex + 1;
+  } else {
+    console.log(`All extensions failed for ${basePath}, using fallback`);
+    // If all extensions fail, use fallback
+    img.src = FALLBACK_IMG;
+  }
+};
+
+// Initialize image paths with first extension
+const getCutPath = (num: number) => `${getCutBasePath(num)}.${EXTENSIONS[0]}`;
+const getProcessPath = (num: number) => `${getProcessBasePath(num)}.${EXTENSIONS[0]}`;
+const getServicePath = (name: string) => `${getServiceBasePath(name)}.${EXTENSIONS[0]}`;
+const getStoryPath = (num: number) => `${getStoryBasePath(num)}.${EXTENSIONS[0]}`;
+const HERO_IMG = `${getHeroBasePath("background")}.${EXTENSIONS[0]}`;
+const PORTRAIT_IMG = `${getHeroBasePath("portrait")}.${EXTENSIONS[0]}`;
 
 const FALLBACK_IMG =
   "data:image/svg+xml;utf8," +
@@ -102,24 +120,23 @@ const FALLBACK_IMG =
     `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'><stop offset='0%' stop-color='%23201a22'/><stop offset='100%' stop-color='%23100d14'/></linearGradient></defs><rect width='400' height='500' fill='url(%23g)'/><g fill='none' stroke='%23D4A373' stroke-width='2' opacity='0.7'><circle cx='200' cy='190' r='50'/><path d='M130 360c0-40 30-70 70-70s70 30 70 70'/><path d='M170 210 l60 60 M230 210 l-60 60'/><path d='M150 130 q50 -60 100 0'/></g></svg>`
   );
 
-// Build ~58 cuts (29 unique photos, doubled to fill marquee seamlessly)
+// Build ~58 cuts (58 unique photos, doubled to fill marquee seamlessly)
 const FIFTY_EIGHT_CUTS = Array.from({ length: 58 }, (_, i) => {
-  const id = CUT_PHOTOS[i % CUT_PHOTOS.length];
   return {
-    id: `${id}-${i}`,
-    src: u(id, 500),
+    id: `cut-${i + 1}`,
+    src: getCutPath(i + 1),
     number: String(i + 1).padStart(2, "0"),
     size: i % 3 === 0 ? "tall" : i % 4 === 1 ? "wide" : "square",
   };
 });
 
 const collage = [
-  { src: u(203, 700, 900), position: "left-[2%] top-[2%] w-32 h-44 md:w-40 md:h-52" },
-  { src: u(204, 700, 800), position: "right-[10%] top-[0%] w-32 h-36 md:w-44 md:h-48" },
-  { src: u(205, 700, 700), position: "right-[0%] top-[28%] w-28 h-28 md:w-36 md:h-36" },
-  { src: u(206, 700, 1000), position: "left-[0%] top-[42%] w-24 h-40 md:w-32 md:h-48" },
-  { src: u(207, 700, 500), position: "left-[14%] bottom-[8%] w-40 h-28 md:w-56 md:h-36" },
-  { src: u(208, 700, 700), position: "right-[16%] bottom-[14%] w-32 h-32 md:w-44 md:h-44" },
+  { src: getCutPath(10), basePath: getCutBasePath(10), position: "left-[2%] top-[2%] w-32 h-44 md:w-40 md:h-52" },
+  { src: getCutPath(11), basePath: getCutBasePath(11), position: "right-[10%] top-[0%] w-32 h-36 md:w-44 md:h-48" },
+  { src: getCutPath(12), basePath: getCutBasePath(12), position: "right-[0%] top-[28%] w-28 h-28 md:w-36 md:h-36" },
+  { src: getCutPath(1), basePath: getCutBasePath(1), position: "left-[0%] top-[42%] w-24 h-40 md:w-32 md:h-48" },
+  { src: getCutPath(2), basePath: getCutBasePath(2), position: "left-[14%] bottom-[8%] w-40 h-28 md:w-56 md:h-36" },
+  { src: getCutPath(3), basePath: getCutBasePath(3), position: "right-[16%] bottom-[14%] w-32 h-32 md:w-44 md:h-44" },
 ];
 
 const timelineData = [
@@ -127,52 +144,57 @@ const timelineData = [
     year: "2015",
     title: (<>THE <span style={{ color: ACCENT }}>BEGINNING</span></>),
     description: "Discovered my passion for barbering and learned the craft from seasoned professionals.",
-    image: CUT_PHOTOS[8],
+    image: getStoryPath(1),
+    basePath: getStoryBasePath(1),
     side: "right" as const,
   },
   {
     year: "2017",
     title: (<><span style={{ color: ACCENT }}>FIRST CHAIR,</span><br /><span style={{ color: ACCENT }}>FIRST CLIENT</span></>),
     description: "Started working at a local barbershop, mastering fades, beards, and styling.",
-    image: CUT_PHOTOS[9],
+    image: getStoryPath(2),
+    basePath: getStoryBasePath(2),
     side: "left" as const,
   },
   {
     year: "2019",
     title: (<><span style={{ color: ACCENT }}>PERFECTING</span><br /><span style={{ color: ACCENT }}>THE ART</span></>),
     description: "Invested in advanced barbering techniques, precision fades, and signature styles.",
-    image: CUT_PHOTOS[10],
+    image: getStoryPath(3),
+    basePath: getStoryBasePath(3),
     side: "right" as const,
   },
   {
     year: "2021",
     title: (<><span style={{ color: ACCENT }}>MY</span><br /><span style={{ color: ACCENT }}>OWN STUDIO</span></>),
     description: "Opened my very own barbershop, creating a space where every cut is an experience.",
-    image: CUT_PHOTOS[11],
+    image: getStoryPath(4),
+    basePath: getStoryBasePath(4),
     side: "left" as const,
   },
   {
     year: "TODAY",
     title: (<><span style={{ color: ACCENT }}>CRAFTING</span><br /><span style={{ color: ACCENT }}>CONFIDENCE</span></>),
     description: "Every snip is a step toward delivering more than a cut — it's self-expression.",
-    image: CUT_PHOTOS[12],
+    image: getStoryPath(5),
+    basePath: getStoryBasePath(5),
     side: "right" as const,
   },
 ];
 
 const servicesData = [
-  { num: "01", name: "Signature Cut", price: "$40", duration: "45 min", image: CUT_PHOTOS[13] },
-  { num: "02", name: "Cut & Beard", price: "$55", duration: "60 min", image: CUT_PHOTOS[14] },
-  { num: "03", name: "Hair Wash & Style", price: "$25", duration: "25 min", image: CUT_PHOTOS[15] },
-  { num: "04", name: "Premium Grooming", price: "$80", duration: "80 min", image: CUT_PHOTOS[16] },
-  { num: "05", name: "Kids Cut", price: "$28", duration: "30 min", image: CUT_PHOTOS[17] },
-  { num: "06", name: "Luxury Package", price: "$120", duration: "100 min", image: CUT_PHOTOS[18] },
+  { num: "01", name: "Signature Cut", price: "$40", duration: "45 min", image: getServicePath("signature-cut"), basePath: getServiceBasePath("signature-cut") },
+  { num: "02", name: "Cut & Beard", price: "$55", duration: "60 min", image: getServicePath("cut-beard"), basePath: getServiceBasePath("cut-beard") },
+  { num: "03", name: "Hair Wash & Style", price: "$25", duration: "25 min", image: getServicePath("hair-wash-style"), basePath: getServiceBasePath("hair-wash-style") },
+  { num: "04", name: "Premium Grooming", price: "$80", duration: "80 min", image: getServicePath("premium-grooming"), basePath: getServiceBasePath("premium-grooming") },
+  { num: "05", name: "Kids Cut", price: "$28", duration: "30 min", image: getServicePath("kids-cut"), basePath: getServiceBasePath("kids-cut") },
+  { num: "06", name: "Luxury Package", price: "$120", duration: "100 min", image: getServicePath("luxury-package"), basePath: getServiceBasePath("luxury-package") },
 ];
 
 const testimonials = [
-  { name: "Robin B.", quote: "\"Laurin always knows the latest trends & delivers the perfect style every time. I leave the chair feeling like my best self.\"", image: CUT_PHOTOS[19] },
-  { name: "Jonas K.", quote: "\"Consistent, sharp and confident. The studio energy is next level and every appointment feels like a reset — exactly what I need.\"", image: CUT_PHOTOS[20] },
-  { name: "Luca M.", quote: "\"Premium in every detail. Laurin listens, advises, and delivers — every single cut is a confidence boost.\"", image: CUT_PHOTOS[21] },
+  { name: "Robin B.", quote: "\"Laurin always knows the latest trends & delivers the perfect style every time. I leave the chair feeling like my best self.\"", image: getCutPath(9), basePath: getCutBasePath(9) },
+  { name: "Jonas K.", quote: "\"Consistent, sharp and confident. The studio energy is next level and every appointment feels like a reset — exactly what I need.\"", image: getCutPath(10), basePath: getCutBasePath(10) },
+  { name: "Luca M.", quote: "\"Premium in every detail. Laurin listens, advises, and delivers — every single cut is a confidence boost.\"", image: getCutPath(11), basePath: getCutBasePath(11) },
 ];
 
 const faqs = [
@@ -215,8 +237,9 @@ function Marquee({ items, direction = "left", speed = 22 }: { items: typeof FIFT
                 src={it.src}
                 alt={`Cut ${it.number}`}
                 onError={(e) => {
-                  const el = e.currentTarget;
-                  if (el.src !== FALLBACK_IMG) el.src = FALLBACK_IMG;
+                  const img = e.currentTarget;
+                  const currentExtIndex = (img as any).extIndex ?? 0;
+                  tryNextExtension(e, getCutBasePath(parseInt(it.number)), currentExtIndex);
                 }}
                 className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
                 loading="lazy"
@@ -404,7 +427,11 @@ export default function App() {
             <img
               src={HERO_IMG}
               alt="Laurin"
-              onError={(e) => { const el = e.currentTarget; if (el.src !== FALLBACK_IMG) el.src = FALLBACK_IMG; }}
+              onError={(e) => {
+                const img = e.currentTarget;
+                const currentExtIndex = (img as any).extIndex ?? 0;
+                tryNextExtension(e, getHeroBasePath("background"), currentExtIndex);
+              }}
               className="h-full w-full object-cover"
               loading="eager"
             />
@@ -414,7 +441,7 @@ export default function App() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: loading ? 0 : 1, y: loading ? 30 : 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
             className="pointer-events-none absolute right-6 top-28 hidden select-none font-black leading-none tracking-[0.08em] text-white/5 md:block lg:text-[9vw]"
             style={{ fontFamily: "Poppins, sans-serif" }}
           >
@@ -425,13 +452,17 @@ export default function App() {
             <motion.div
               initial={{ x: -60, opacity: 0 }}
               animate={{ x: loading ? -60 : 0, opacity: loading ? 0 : 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
               className="overflow-hidden rounded-[2rem] border border-white/10 shadow-2xl"
             >
               <img
-                    src={u(202, 1000, 1300)}
+                    src={PORTRAIT_IMG}
                     alt="Laurin portrait"
-                    onError={(e) => { const el = e.currentTarget; if (el.src !== FALLBACK_IMG) el.src = FALLBACK_IMG; }}
+                    onError={(e) => {
+                      const img = e.currentTarget;
+                      const currentExtIndex = (img as any).extIndex ?? 0;
+                      tryNextExtension(e, getHeroBasePath("portrait"), currentExtIndex);
+                    }}
                     className="h-[480px] w-full object-cover md:h-[560px]"
                     loading="eager"
                   />
@@ -441,7 +472,7 @@ export default function App() {
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: loading ? 0 : 1 }}
-                transition={{ duration: 0.4, delay: 0.4 }}
+                transition={{ duration: 0.3, delay: 0.15 }}
                 className="text-[10px] uppercase tracking-[0.34em] md:justify-start"
                 style={{ color: ACCENT }}
               >
@@ -450,7 +481,7 @@ export default function App() {
               <motion.h1
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: loading ? 0 : 1, y: loading ? 28 : 0 }}
-                transition={{ duration: 0.5, delay: 0.45 }}
+                transition={{ duration: 0.3, delay: 0.2 }}
                 className="mt-3 font-black uppercase leading-[0.92] tracking-tight"
                 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(3.2rem, 11vw, 7.4rem)" }}
               >
@@ -459,7 +490,7 @@ export default function App() {
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: loading ? 0 : 1 }}
-                transition={{ duration: 0.4, delay: 0.6 }}
+                transition={{ duration: 0.3, delay: 0.25 }}
                 className="mt-5 max-w-md text-sm leading-relaxed text-white/70"
               >
                 Luxury barber crafting confidence through style — precision fades, signature cuts, and the kind of finish that turns heads.
@@ -467,7 +498,7 @@ export default function App() {
               <motion.div
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: loading ? 0 : 1, y: loading ? 14 : 0 }}
-                transition={{ duration: 0.4, delay: 0.7 }}
+                transition={{ duration: 0.3, delay: 0.3 }}
                 className="mt-7 flex flex-wrap items-center gap-3 md:justify-start"
               >
                 <AccentButton>
@@ -567,8 +598,9 @@ export default function App() {
                     src={c.src}
                     alt="work"
                     onError={(e) => {
-                      const el = e.currentTarget;
-                      if (el.src !== FALLBACK_IMG) el.src = FALLBACK_IMG;
+                      const img = e.currentTarget;
+                      const currentExtIndex = (img as any).extIndex ?? 0;
+                      tryNextExtension(e, c.basePath, currentExtIndex);
                     }}
                     className="h-full w-full object-cover"
                     loading="lazy"
@@ -639,7 +671,17 @@ export default function App() {
                           <div className="mt-4 md:col-start-2 md:row-start-1 md:mt-0">
                             <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/75 md:text-right">{item.year}</p>
                             <div className="overflow-hidden rounded-3xl border border-white/10 shadow-lg">
-                              <img src={item.image} alt={item.year} onError={(e) => { const el = e.currentTarget; if (el.src !== FALLBACK_IMG) el.src = FALLBACK_IMG; }} className="h-60 w-full object-cover" loading="eager" />
+                              <img 
+                                src={item.image} 
+                                alt={item.year} 
+                                onError={(e) => {
+                                  const img = e.currentTarget;
+                                  const currentExtIndex = (img as any).extIndex ?? 0;
+                                  tryNextExtension(e, item.basePath, currentExtIndex);
+                                }} 
+                                className="h-60 w-full object-cover" 
+                                loading="eager" 
+                              />
                             </div>
                           </div>
                         </>
@@ -648,7 +690,17 @@ export default function App() {
                           <div className="md:col-start-1 md:row-start-1">
                             <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/75">{item.year}</p>
                             <div className="overflow-hidden rounded-3xl border border-white/10 shadow-lg">
-                              <img src={item.image} alt={item.year} onError={(e) => { const el = e.currentTarget; if (el.src !== FALLBACK_IMG) el.src = FALLBACK_IMG; }} className="h-60 w-full object-cover" loading="eager" />
+                              <img 
+                                src={item.image} 
+                                alt={item.year} 
+                                onError={(e) => {
+                                  const img = e.currentTarget;
+                                  const currentExtIndex = (img as any).extIndex ?? 0;
+                                  tryNextExtension(e, item.basePath, currentExtIndex);
+                                }} 
+                                className="h-60 w-full object-cover" 
+                                loading="eager" 
+                              />
                             </div>
                           </div>
                           <div className="mt-4 md:col-start-2 md:row-start-1 md:mt-28">
@@ -695,7 +747,17 @@ export default function App() {
                     {s.num}
                   </span>
                   <div className="h-56 overflow-hidden">
-                    <img src={s.image} alt={s.name} onError={(e) => { const el = e.currentTarget; if (el.src !== FALLBACK_IMG) el.src = FALLBACK_IMG; }} className="h-full w-full object-cover transition duration-500 group-hover:scale-110" loading="lazy" />
+                    <img 
+                      src={s.image} 
+                      alt={s.name} 
+                      onError={(e) => {
+                        const img = e.currentTarget;
+                        const currentExtIndex = (img as any).extIndex ?? 0;
+                        tryNextExtension(e, s.basePath, currentExtIndex);
+                      }} 
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-110" 
+                      loading="lazy" 
+                    />
                   </div>
                   <div className="p-5">
                     <p className="text-lg font-bold uppercase tracking-wide" style={{ fontFamily: "Poppins, sans-serif" }}>{s.name}</p>
@@ -737,7 +799,16 @@ export default function App() {
                 </div>
                 <p className="mt-4 text-sm font-semibold leading-relaxed">{current.quote}</p>
                 <div className="mt-5 flex items-center gap-3">
-                  <img src={current.image} alt={current.name} onError={(e) => { const el = e.currentTarget; if (el.src !== FALLBACK_IMG) el.src = FALLBACK_IMG; }} className="h-10 w-10 rounded-full object-cover" />
+                  <img 
+                    src={current.image} 
+                    alt={current.name} 
+                    onError={(e) => {
+                      const img = e.currentTarget;
+                      const currentExtIndex = (img as any).extIndex ?? 0;
+                      tryNextExtension(e, current.basePath, currentExtIndex);
+                    }} 
+                    className="h-10 w-10 rounded-full object-cover" 
+                  />
                   <p className="text-[11px] font-bold uppercase tracking-[0.24em]">— {current.name}</p>
                 </div>
               </motion.div>
@@ -922,7 +993,9 @@ export default function App() {
                 <h2 className="mt-2 font-black uppercase" style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(2rem, 5vw, 3.4rem)" }}>Our Studio</h2>
                 <p className="mt-2 text-[11px] text-white/55">Come visit us for your next cut.</p>
               </div>
-              <AccentButton>Get Directions <ArrowRight className="h-3.5 w-3.5" /></AccentButton>
+              <a href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwjA173spcyVAxUAAAAAHQAAAAAQBQ..i&pvq=Cg0vZy8xMXltbHp3MTdfIg0KB2hhaXJjdXQQAhgD&lqi=ChFoYWlyY3V0IGxvY2F0aW9uc0j_ibavzr2AgAhaHRAAGAEiEWhhaXJjdXQgbG9jYXRpb25zKgQIAxAAkgEKaGFpcl9zYWxvbpoBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQydGpNRTFyYkc1YWJrcEpWVmhLTTFkWVVrdE9NV042VWpCWk1WUkhZeEFC-gEFCOUCEEA&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=lk&sa=X&ftid=0x3ae25b005f4a792f:0xdf35e402d474e5aa" target="_blank" rel="noopener noreferrer">
+                <AccentButton>Get Directions <ArrowRight className="h-3.5 w-3.5" /></AccentButton>
+              </a>
             </div>
 
             <div className="mt-12 grid gap-6 md:grid-cols-2">
